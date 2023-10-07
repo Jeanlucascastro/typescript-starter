@@ -4,6 +4,8 @@ import { AppService } from './app.service';
 import { CourseModule } from './course/course.module';
 import { TypeOrmModule, TypeOrmModuleOptions } from '@nestjs/typeorm';
 import { ConfigModule } from '@nestjs/config';
+import { UsersModule } from './users/users.module';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [CourseModule,
@@ -18,7 +20,9 @@ import { ConfigModule } from '@nestjs/config';
       synchronize: true,
     } as TypeOrmModuleOptions),
     ConfigModule.forRoot(),
-    CourseModule,],
+    CourseModule,
+    UsersModule,
+    AuthModule],
   controllers: [AppController],
   providers: [AppService],
 })

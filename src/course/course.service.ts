@@ -40,6 +40,5 @@ export class CourseService {
       status: ActiveStatusEnum.INATIVE,
     });
     return;
-  
   }
 }
