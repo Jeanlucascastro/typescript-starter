@@ -1,5 +1,6 @@
 import { ActiveStatusEnum } from "src/commom/enum/enum";
-import { BeforeInsert, Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { Video } from "src/videos/entities/video.entity";
+import { BeforeInsert, Column, CreateDateColumn, Entity, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 
 @Entity('Course')
 export class Course {
@@ -11,6 +12,9 @@ export class Course {
   
     @Column()
     description: string;
+
+    @OneToMany(type => Video, video => video.course)
+    videos: Video[];
   
     @Column({
       type: 'enum',

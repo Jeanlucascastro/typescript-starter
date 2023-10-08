@@ -6,6 +6,7 @@ import { TypeOrmModule, TypeOrmModuleOptions } from '@nestjs/typeorm';
 import { ConfigModule } from '@nestjs/config';
 import { UsersModule } from './users/users.module';
 import { AuthModule } from './auth/auth.module';
+import { VideosModule } from './videos/videos.module';
 
 @Module({
   imports: [CourseModule,
@@ -22,7 +23,8 @@ import { AuthModule } from './auth/auth.module';
     ConfigModule.forRoot(),
     CourseModule,
     UsersModule,
-    AuthModule],
+    AuthModule,
+    VideosModule],
   controllers: [AppController],
   providers: [AppService],
 })
