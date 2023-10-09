@@ -1,21 +1,26 @@
-import { Injectable } from '@nestjs/common';
-import { CreateVideoDto } from './dto/create-video.dto';
-import { UpdateVideoDto } from './dto/update-video.dto';
-import { Video } from './entities/video.entity';
-import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
-import { ActiveStatusEnum } from 'src/commom/enum/enum';
+import { Injectable } from "@nestjs/common";
+import { InjectRepository } from "@nestjs/typeorm";
+import { Video } from "./entities/video.entity";
+import { Course } from "src/course/entities/course.entity";
+import { Repository } from "typeorm";
+import { CreateVideoDto } from "./dto/create-video.dto";
+import { UpdateVideoDto } from "./dto/update-video.dto";
+import { ActiveStatusEnum } from "src/commom/enum/enum";
+
 
 @Injectable()
 export class VideosService {
   constructor(
-    @InjectRepository(Video) private videoRepository: Repository<Video>,
+    @InjectRepository(Video) private readonly videoRepository: Repository<Video>,
+    @InjectRepository(Course) private readonly courseRepository: Repository<Course>
   ) {}
 
   async create(createCourseDto: CreateVideoDto) {
-    const course = this.videoRepository.create(createCourseDto);
-    await this.videoRepository.save(course);
-    return course;
+    const video = this.videoRepository.create(createCourseDto);
+    const course = await this.courseRepository.findOneBy({id: createCourseDto.courseId})
+    video.course = course;
+    await this.videoRepository.save(video);
+    return video;
   }
   
   findAll() {
@@ -23,8 +28,8 @@ export class VideosService {
   }
 
   async findOne(id: number) {
-    const course = await this.videoRepository.findOneBy({id: id});
-    return course;
+    const video = await this.videoRepository.findOneBy({id: id});
+    return video;
   }
 
   async update(id: number, updateCourseDto: UpdateVideoDto) {

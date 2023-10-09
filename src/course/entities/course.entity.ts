@@ -13,7 +13,7 @@ export class Course {
     @Column()
     description: string;
 
-    @OneToMany(type => Video, video => video.course)
+    @OneToMany(type => Video, video => video.course, { eager: true })
     videos: Video[];
   
     @Column({

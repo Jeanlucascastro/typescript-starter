@@ -19,6 +19,7 @@ import { VideosModule } from './videos/videos.module';
       database: process.env.TYPEORM_DATABASE,
       entities: [__dirname + '/**/*.entity{.js,.ts}'],
       synchronize: true,
+      autoLoadEntities: true,
     } as TypeOrmModuleOptions),
     ConfigModule.forRoot(),
     CourseModule,

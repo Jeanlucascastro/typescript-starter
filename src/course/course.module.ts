@@ -11,6 +11,7 @@ import { Course } from './entities/course.entity';
     TypeOrmModule.forFeature([Course]),
     CourseModule,
   ],
+  exports: [CourseService], 
   controllers: [CourseController],
   providers: [CourseService],
 })
