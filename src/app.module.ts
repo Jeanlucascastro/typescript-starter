@@ -25,7 +25,7 @@ import { VideosModule } from './videos/videos.module';
     CourseModule,
     UsersModule,
     AuthModule,
-    VideosModule],
+    VideosModule,],
   controllers: [AppController],
   providers: [AppService],
 })

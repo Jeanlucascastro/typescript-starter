@@ -19,6 +19,11 @@ export class VideosController {
     return this.videosService.findAll();
   }
 
+  @Get('by-course/:id')
+  findAllByCourse(@Param('id') id: number) {
+    return this.videosService.findAllByCourse(id);
+  }
+
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.videosService.findOne(+id);

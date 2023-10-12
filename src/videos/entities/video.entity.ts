@@ -16,6 +16,9 @@ export class Video {
     @ManyToOne(type => Course, course => course.videos)
     course: Course;
 
+    @Column()
+    ordering: number;
+
     @Column({
         type: 'enum',
         enum: ActiveStatusEnum,

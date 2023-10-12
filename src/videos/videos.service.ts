@@ -27,6 +27,10 @@ export class VideosService {
     return this.videoRepository.find();
   }
 
+  findAllByCourse(id: number) {
+    return this.videoRepository.find({ where: { course: { id: id } } })
+  }
+
   async findOne(id: number) {
     const video = await this.videoRepository.findOneBy({id: id});
     return video;

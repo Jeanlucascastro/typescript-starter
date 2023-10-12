@@ -7,6 +7,8 @@ export class CreateVideoDto {
     @IsNotEmpty()
     url: string;
     @IsNotEmpty()
+    ordering: number;
+    @IsNotEmpty()
     courseId: number; 
 
 }
