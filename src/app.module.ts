@@ -7,6 +7,7 @@ import { ConfigModule } from '@nestjs/config';
 import { UsersModule } from './users/users.module';
 import { AuthModule } from './auth/auth.module';
 import { VideosModule } from './videos/videos.module';
+import { VideoCommentsModule } from './video-comments/video-comments.module';
 
 @Module({
   imports: [CourseModule,
@@ -25,7 +26,9 @@ import { VideosModule } from './videos/videos.module';
     CourseModule,
     UsersModule,
     AuthModule,
-    VideosModule,],
+    VideosModule,
+    VideoCommentsModule,
+    ],
   controllers: [AppController],
   providers: [AppService],
 })

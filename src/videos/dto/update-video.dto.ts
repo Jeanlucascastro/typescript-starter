@@ -5,5 +5,5 @@ export class UpdateVideoDto extends PartialType(CreateVideoDto) {
     name: string;
     url: string;
     ordering: number;
-    courseId?: number;
+    courseId: number;
 }

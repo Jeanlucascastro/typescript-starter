@@ -1,27 +1,20 @@
 import { ActiveStatusEnum } from "src/commom/enum/enum";
-import { Course } from "src/course/entities/course.entity";
-import { VideoComment } from "src/video-comments/entities/video-comment.entity";
-import { BeforeInsert, Column, CreateDateColumn, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { Video } from "src/videos/entities/video.entity";
+import { BeforeInsert, Column, CreateDateColumn, Entity, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 
-@Entity('video')
-export class Video {
+@Entity('video_comment')
+export class VideoComment {
     @PrimaryGeneratedColumn()
     id: number;
 
     @Column()
-    name: string;
+    text: string; 
+    
+    @ManyToOne(type => Video, video => video.videoComments)
+    video: Video;
 
     @Column()
-    url: string;
-
-    @ManyToOne(type => Course, course => course.videos)
-    course: Course;
-
-    @OneToMany(type => VideoComment, videoComment => videoComment.video, { eager: true })
-    videoComments: VideoComment[];
-
-    @Column()
-    ordering: number;
+    answered: boolean;
 
     @Column({
         type: 'enum',
@@ -39,5 +32,10 @@ export class Video {
       @BeforeInsert()
       async beforeInsert() {
         this.status = ActiveStatusEnum.ACTIVE;
+      }
+    
+      @BeforeInsert()
+      async beforeInsertAns() {
+        this.answered = false;
       }
 }
