@@ -27,6 +27,9 @@ export class UsersEntity {
   @Column()
   password: string;
 
+  @Column()
+  admin: boolean;
+
   @Column({
     type: 'enum',
     enum: ActiveStatusEnum,

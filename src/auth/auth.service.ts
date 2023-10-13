@@ -12,7 +12,7 @@ export class AuthService {
   ) {}
 
   async login(user) {
-    const payload = { sub: user.id, email: user.email };
+    const payload = { sub: user.id, email: user.email, admProfile: user.admin};
 
     return {
       token: this.jwtService.sign(payload),
@@ -31,5 +31,19 @@ export class AuthService {
     if (!isPasswordValid) return null;
 
     return user;
+  }
+
+  async validateAdmin(email: string){
+    let user: UsersEntity;
+    try {
+      user = await this.userService.findOneByEmail(email);
+    } catch (error) {
+      return null;
+    }
+    if (user.admin === true) {
+      return true;
+    } else {
+      return false;
+    }
   }
 }
