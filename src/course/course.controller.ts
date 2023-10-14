@@ -27,11 +27,13 @@ export class CourseController {
   }
 
   @Patch(':id')
+  @UseGuards(AdminGuard)
   update(@Param('id') id: string, @Body() updateCourseDto: UpdateCourseDto) {
     return this.courseService.update(+id, updateCourseDto);
   }
 
   @Delete(':id')
+  @UseGuards(AdminGuard)
   remove(@Param('id') id: string) {
     return this.courseService.remove(+id);
   }
