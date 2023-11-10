@@ -12,10 +12,15 @@ export class AuthService {
   ) {}
 
   async login(user) {
+    console.log('JPWE ', process.env.JWT_SECRET_KEY, user)
     const payload = { sub: user.id, email: user.email, admProfile: user.admin};
+    console.log('sffsssssssssssssssssssssssssssssssssssssssssssssssss1', payload)
+
+    const respostaCarai = this.jwtService.sign(payload, { secret: `${process.env.JWT_SECRET_KEY}` })
+    console.log('respostaCarai', respostaCarai)
 
     return {
-      token: this.jwtService.sign(payload),
+      token: respostaCarai,
     };
   }
 

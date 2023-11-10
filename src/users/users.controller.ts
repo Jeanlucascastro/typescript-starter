@@ -18,7 +18,7 @@ import { UsersService } from './users.service';
 import { AdminGuard } from 'src/auth/strategies/adm.strategy';
 
 @Controller('api/v1/users')
-@UseGuards(AuthGuard('jwt'))
+// @UseGuards(AuthGuard('jwt'))
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
@@ -29,7 +29,7 @@ export class UsersController {
   }
 
   @Post()
-  @UseGuards(AdminGuard)
+  // @UseGuards(AdminGuard)
   async store(@Body() body: CreateUserDto) {
     return await this.usersService.store(body);
   }
