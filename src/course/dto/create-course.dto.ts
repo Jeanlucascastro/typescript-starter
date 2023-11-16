@@ -5,4 +5,6 @@ export class CreateCourseDto {
         name: string;
         @IsNotEmpty()
         description: string;
+        @IsNotEmpty()
+        companyId: number;
 }

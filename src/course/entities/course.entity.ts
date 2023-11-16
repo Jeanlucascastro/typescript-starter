@@ -2,7 +2,7 @@ import { ActiveStatusEnum } from "src/commom/enum/enum";
 import { Video } from "src/videos/entities/video.entity";
 import { BeforeInsert, Column, CreateDateColumn, Entity, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 
-@Entity('Course')
+@Entity('course')
 export class Course {
     @PrimaryGeneratedColumn()
     id: number;
@@ -12,6 +12,9 @@ export class Course {
   
     @Column()
     description: string;
+
+    @Column()
+    companyId: number;
 
     @OneToMany(type => Video, video => video.course, { eager: true })
     videos: Video[];

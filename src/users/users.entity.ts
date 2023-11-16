@@ -30,6 +30,9 @@ export class UsersEntity {
   @Column()
   admin: boolean;
 
+  @Column()
+  companyId: number;
+
   @Column({
     type: 'enum',
     enum: ActiveStatusEnum,
